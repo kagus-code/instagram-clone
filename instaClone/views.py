@@ -7,5 +7,5 @@ import datetime as dt
 
 def landing (request):
 
-  title = 'instagram'
+  title = 'Instagram'
   return render (request,'index.html',{'title':title,})
