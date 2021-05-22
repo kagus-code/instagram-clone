@@ -32,3 +32,25 @@ class Profile(models.Model):
 
     class Meta:
         ordering = ['user_name']
+
+
+class Image(models.Model):
+  image= CloudinaryField('image',null=True)
+  image_name = models.CharField(max_length=50)
+  image_caption= models.TextField()
+  pub_date = models.DateTimeField(auto_now_add=True)
+#   likes =models.ManyToManyField(User, related_name='image_post')
+#   creator= models.ForeignKey(User, on_delete=models.CASCADE)
+#   comment= models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+  def save_image(self):
+    self.save()      
+
+  def delete_image(self, image_name):
+        self.objects.filter(image_name=image_name).delete()   
+
+  @classmethod
+  def update_caption(cls,id,new_caption):
+        update = Profile.objects.filter(id=id).update(user_caption=new_caption)
+        return update    
