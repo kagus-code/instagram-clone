@@ -1,10 +1,12 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 
 class Profile(models.Model):
+    user = models.ForeignKey(User, unique=True, on_delete=models.CASCADE)
     user_name = models.CharField(max_length=30)
     profile_pic = CloudinaryField('image',null=True)
     bio = models.TextField(max_length=500, default="Bio", blank=True)
@@ -39,8 +41,8 @@ class Image(models.Model):
   image_name = models.CharField(max_length=50)
   image_caption= models.TextField()
   pub_date = models.DateTimeField(auto_now_add=True)
-#   likes =models.ManyToManyField(User, related_name='image_post')
-#   creator= models.ForeignKey(User, on_delete=models.CASCADE)
+  likes =models.ManyToManyField(User, related_name='image_post')
+  creator= models.ForeignKey(User, unique=True, on_delete=models.CASCADE)
 #   comment= models.ForeignKey(User, on_delete=models.CASCADE)
 
 
@@ -52,5 +54,5 @@ class Image(models.Model):
 
   @classmethod
   def update_caption(cls,id,new_caption):
-        update = Profile.objects.filter(id=id).update(user_caption=new_caption)
+        update = Image.objects.filter(id=id).update(user_caption=new_caption)
         return update    
