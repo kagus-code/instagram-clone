@@ -25,7 +25,6 @@
   --fb-logo: #385185;
   --log-in-button: #0095f6;
   --black: #262626;
-  --footer-links: #1e4f7c;
   --copyright-gray: #bfbfbf;
 }
 
@@ -262,44 +261,7 @@ body {
   display: none;
 }
 
-/********** 
- * FOOTER *
- **********/
 
-footer {
-  width: 35rem;
-  display: flex;
-  flex-direction: column;
-  margin: 4rem auto 0 auto;
-}
-
-/* Unordered list */
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-}
-
-.footer-links li {
-  flex-basis: 13%;
-  text-align: center;
-}
-
-.footer-links a {
-  color: var(--footer-links);
-  font-weight: 700;
-  display: inline-block;
-  margin-bottom: 1rem;
-}
-
-.copyright {
-  text-align: center;
-  color: var(--copyright-gray);
-  font-weight: 700;
-  font-size: 1.2rem;
-}
 @media screen and (min-width: 876px) {
   main {
     display: flex;
@@ -315,39 +277,6 @@ footer {
     order: 1;
   }
 
-  footer {
-    width: 100%;
-    justify-content: flex-start;
-    padding-left: 4rem;
-    padding-bottom: 4rem;
-  }
-
-  .footer-links {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-  }
-
-  .footer-links li {
-    flex-basis: auto;
-    margin-right: 1rem;
-  }
-
-  .footer-links a {
-    margin-bottom: 0;
-  }
-
-  .copyright {
-    text-align: left;
-  }
+  
 }
 
-/*********** 
- * DESKTOP *
- ***********/
-
-@media screen and (min-width: 1527px) {
-  footer {
-    flex-direction: row;
-    justify-content: space-around;
-  }
-}
