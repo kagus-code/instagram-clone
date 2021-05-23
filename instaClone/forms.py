@@ -1,6 +1,9 @@
 from django import forms
+from .models import Image
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
+from instaClone import models
 
 
 class UpdateUserForm(forms.ModelForm):
@@ -9,4 +12,10 @@ class UpdateUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'email')
+
+class UploadImageForm(forms.ModelForm):
+  class Meta:
+    model = Image
+    exclude = ['likes','pub_date','creator']
+
 

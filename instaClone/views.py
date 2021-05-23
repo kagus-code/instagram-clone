@@ -39,4 +39,6 @@ def like (request, pk):
   return HttpResponseRedirect(reverse('landingPage'))
 
 
+# @login_required(login_url='/accounts/login/')
+# def upload_image(request):
 
