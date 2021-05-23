@@ -12,6 +12,8 @@ from . import views
 urlpatterns = [
 
   re_path(r'^$', views.landing,name='landingPage'),
+  path('like/<int:pk>', views.like,name='like_image'),
+  
 
 
 
