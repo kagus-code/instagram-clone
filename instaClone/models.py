@@ -55,7 +55,14 @@ class Image(models.Model):
   @classmethod
   def update_caption(cls,id,new_caption):
         update = Image.objects.filter(id=id).update(user_caption=new_caption)
-        return update    
+        return update   
+
+
+  def __str__(self):
+        return self.image_name
+
+class Meta:
+        ordering = ['pub_date']       
 
 
 class Comment(models.Model):
