@@ -170,3 +170,4 @@ cloudinary.config(
 
 LOGIN_REDIRECT_URL = 'landingPage'
 
+
