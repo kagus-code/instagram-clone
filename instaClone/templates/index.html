@@ -1,4 +1,7 @@
 {%extends "base.html"%}
+{% load cloudinary %}
+
+
 {% load bootstrap4 %}
 {% load static%}
 
@@ -96,6 +99,7 @@
               <div class="col-8">
 
                   <!-- START OF POSTS -->
+                  {% for post in Posts%}
                   <div class="d-flex flex-column mt-4 mb-4">
 
                       <div class="card">
@@ -106,12 +110,13 @@
                                       <img src="{% static 'images/post-1.jpg'   %}"  alt="..."
                                           style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                                   </div>
-                                  <span class="font-weight-bold">samkolder</span>
+                                  <span class="font-weight-bold">{{post.creator}}</span>
                               </div>
                           </div>
                           <div class="card-body p-0">
                               <div class="embed-responsive embed-responsive-1by1">
-                                  <img class="embed-responsive-item" src="{% static 'images/post-1.jpg'   %}" />
+                                <img class="embed-responsive-item" src="{{ post.image.url}}" />
+                                 <!-- <div class="embed-responsive-item" > {% cloudinary post.image format="jpg" width=500 height=500 crop="fill" %} </div> -->
                               </div>
 
                               <div class="d-flex flex-row justify-content-between pl-3 pr-3 pt-3 pb-1">
@@ -166,24 +171,21 @@
 
                               <div class="pl-3 pr-3 pb-2">
                                   <strong class="d-block">365.354 likes</strong>
-                                  <strong class="d-block">samkolder</strong>
-                                  <p class="d-block mb-1">Lil drone shot I got a while back but never posted.</p>
+                                  <strong class="d-block">{{post.creator}}</strong>
+                                  <p class="d-block mb-1">{{post.image_caption}}</p>
                                   <button class="btn p-0">
                                       <span class="text-muted">View all 2,247 comments</span>
                                   </button>
-
+                                  
                                   <div>
                                       <div>
-                                          <strong class="d-block">a.7.m3ff</strong>
+                                          <strong class="d-block"></strong>
                                           <span>❤️💓💓💓💓💓</span>
                                       </div>
-                                      <div>
-                                          <strong class="d-block">adri_rez77</strong>
-                                          <span>Hi</span>
-                                      </div>
+    
                                   </div>
 
-                                  <small class="text-muted">4 HOURS AGO</small>
+                                  <small class="text-muted">{{post.pub_date|timesince}} ago</small>
                               </div>
 
                               <div class="position-relative comment-box">
@@ -196,6 +198,13 @@
 
                           </div>
                       </div>
+
+
+                      {% empty %}
+                      <div class="row">
+                        <h2 class="text-center">There No New Istagram posts yet</h2>
+                      </div>
+                      {% endfor %}
 
                   </div>
                   <!-- END OF POSTS -->
