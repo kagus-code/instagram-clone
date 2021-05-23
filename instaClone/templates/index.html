@@ -124,7 +124,7 @@
                                       <li class="list-inline-item">
                                         <form action="{%url 'like_image' post.pk %}" method="POST">
                                           {% csrf_token %}
-                                          <button class="btn p-0" type="submit" name="image_id" value="{post.id}">
+                                          <button class="btn p-0" type="submit" name="image_id" value="{{post.id}}">
                                               <svg width="1.6em" height="1.6em" viewBox="0 0 16 16"
                                                   class="bi bi-heart" fill="currentColor"
                                                   xmlns="http://www.w3.org/2000/svg">
