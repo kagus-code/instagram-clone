@@ -13,7 +13,7 @@ def landing (request):
   comments =Comment.objects.all()
 
   title = 'Instagram'
-  return render (request,'index.html',{'title':title,'Posts':post, 'comments':comments})
+  return render (request,'profile/profile.html',{'title':title,'Posts':post, 'comments':comments})
 
 
 def like (request, pk):
