@@ -13,9 +13,16 @@ def landing (request):
   comments =Comment.objects.all()
 
   title = 'Instagram'
-  return render (request,'profile/profile.html',{'title':title,'Posts':post, 'comments':comments})
+  return render (request,'index.html',{'title':title,'Posts':post, 'comments':comments})
 
 
+@login_required(login_url='/accounts/login/')
+def profile(request):
+  profile=Profile.objects.all()
+  
+
+
+@login_required(login_url='/accounts/login/')
 def like (request, pk):
   image = get_object_or_404(Image, id=request.POST.get('image_id'))
   image.likes.add(request.user)
