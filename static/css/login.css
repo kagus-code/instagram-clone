@@ -261,6 +261,12 @@ body {
   display: none;
 }
 
+.info{
+  font-weight: 600px;
+  line-height: 20px;
+  font-size: 17px;
+  color: #999;
+}
 
 @media screen and (min-width: 876px) {
   main {

@@ -126,6 +126,7 @@
                                           {% csrf_token %}
                                           <button class="btn p-0" type="submit" name="image_id" value="{{post.id}}">
                                               <svg width="1.6em" height="1.6em" viewBox="0 0 16 16"
+                                              
                                                   class="bi bi-heart" fill="currentColor"
                                                   xmlns="http://www.w3.org/2000/svg">
                                                   <path fill-rule="evenodd"
@@ -174,7 +175,12 @@
                               </div>
 
                               <div class="pl-3 pr-3 pb-2">
+                                {% if post.likes.count < 2   %}
+                                  <strong class="d-block">{{post.likes.count }} like</strong>
+                                  {% else %}
                                   <strong class="d-block">{{post.likes.count }} likes</strong>
+                                  {% endif %}
+
                                   <strong class="d-block">{{post.creator}}</strong>
                                   <p class="d-block mb-1">{{post.image_caption}}</p>
                                   <button class="btn p-0">

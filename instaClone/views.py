@@ -13,7 +13,7 @@ def landing (request):
 
 
   title = 'Instagram'
-  return render (request,'index.html',{'title':title,'Posts':post, 'comments':comments})
+  return render (request,'django_registration/registration_form.html',{'title':title,'Posts':post, 'comments':comments})
 
 
 def like (request, pk):

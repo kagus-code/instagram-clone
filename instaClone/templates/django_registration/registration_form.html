@@ -1,0 +1,70 @@
+{%extends "django_registration/base.html"%} 
+{% load crispy_forms_tags %}
+{% load bootstrap4 %}
+{% load static%}
+
+
+
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/login.css'   %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+
+{% block content %}
+
+
+
+
+<main>
+  <div class="log-in-container">
+    <div class="log-in">
+      <!-- Logo -->
+      <img src="{% static 'images/instagram-logo.png'   %}" class="logo" />
+      <p class="info"> Sign up to see photos and videos from your friends.</p>
+
+      {% if form.errors %}
+      <p> Some Information Might be Incorrect </p>
+    {% endif %}
+
+      <!-- Log in form -->
+      <div class="log-in-form">
+
+        <form  action="/accounts/register/" method="post">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <div class="form-group">
+            <input type="submit" class="btn btn-primary btn-sm" value="Sign Up">
+          </div>
+
+          <input type="hidden" name="next" value="{{next}}">
+
+        </form>
+      </div>
+      
+    </div>
+    <!-- Sign up -->
+    <div class="sign-up">
+      <span>Have an account?</span><a href="#">Log in</a>
+    </div>
+    <!-- Download app -->
+    <div class="get-the-app">
+      <span>Get the app</span>
+      <div class="app-images">
+        <a href="#"><img src="{% static 'images/applestore.png'   %}"></a>
+        <a href="#"><img src="{% static 'images/googlestore.png'   %}"/></a>
+      </div>
+    </div>
+  </div>
+  <!-- Phones -->
+  <div class="phones-container">
+    <img src="{% static 'images/phones.png'   %}" />
+  </div>
+</main>
+
+
+
+
+
+{% endblock %}
