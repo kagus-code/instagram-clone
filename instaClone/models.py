@@ -61,7 +61,7 @@ class Image(models.Model):
   def __str__(self):
         return self.image_name
 
-class Meta:
+  class Meta:
         ordering = ['pub_date']       
 
 
