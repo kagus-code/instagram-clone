@@ -13,7 +13,7 @@ urlpatterns = [
 
   re_path(r'^$', views.landing,name='landingPage'),
   path('like/<int:pk>', views.like,name='like_image'),
-  re_path(r'^profile/(?P<user_id>\d+)', views.profile, name='profile_page'),
+  re_path(r'^profile/(?P<user_id>\d+)', views.user_profile, name='profile_page'),
   
 
 

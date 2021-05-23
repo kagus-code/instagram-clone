@@ -17,9 +17,14 @@ def landing (request):
 
 
 @login_required(login_url='/accounts/login/')
-def profile(request):
-  profile=Profile.objects.all()
+def user_profile (request,user_id):
   
+
+  profile=Profile.objects.all()
+
+
+  return render(request, 'profile/profile.html')
+
 
 
 @login_required(login_url='/accounts/login/')
