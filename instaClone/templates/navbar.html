@@ -10,7 +10,7 @@
 
 
 
-
+   {% if user.is_authenticated %}
 
 
 
@@ -71,8 +71,8 @@
                   </li>
 
                   
-                  <li class="list-inline-item ml-2 align-middle">
-                      <a href="" class="link-menu">
+                  <li class="list-inline-item ml-2 align-middle ">
+                      <a href="{% url 'profile_page'  username=user.username %} " class="link-menu">
                           <div
                               class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border topbar-profile-photo">
                               <img src="{% static 'images/post-1.jpg'   %}"  alt="..."
@@ -84,4 +84,11 @@
           </div>
       </div>
   </div>
+
+  {% else %}
+            <li>
+              <a class='btn btn-default' href="/accounts/login">Login</a>
+            </li>
+
+            {% endif %}
 </nav>

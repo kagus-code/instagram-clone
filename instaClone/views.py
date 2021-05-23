@@ -17,7 +17,7 @@ def landing (request):
 
 
 @login_required(login_url='/accounts/login/')
-def user_profile (request,user_id):
+def user_profile (request,username):
   
 
   profile=Profile.objects.all()
