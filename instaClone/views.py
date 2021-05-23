@@ -1,4 +1,5 @@
 from django.core.checks import messages
+from django.contrib.auth.models import User
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http  import HttpResponse,Http404,HttpResponseRedirect
 from django.urls import reverse
@@ -18,12 +19,16 @@ def landing (request):
 
 @login_required(login_url='/accounts/login/')
 def user_profile (request,username):
-  
+  user_profile = get_object_or_404(User, username=username)
+  posts = user_profile.image.all()
+
+  print(posts)
+
 
   profile=Profile.objects.all()
 
 
-  return render(request, 'profile/profile.html')
+  return render(request, 'profile/profile.html', {'posts':posts})
 
 
 

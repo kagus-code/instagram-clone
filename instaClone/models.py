@@ -42,7 +42,7 @@ class Image(models.Model):
   image_caption= models.TextField()
   pub_date = models.DateTimeField(auto_now_add=True)
   likes =models.ManyToManyField(User, related_name='likes',blank=True)
-  creator = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+  creator = models.ForeignKey(User, on_delete=models.CASCADE, null=True,related_name='creator')
 
 
 

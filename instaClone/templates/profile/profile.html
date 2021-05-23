@@ -1,4 +1,5 @@
 {%extends "profile/base.html"%}
+{% load cloudinary %}
 {% load bootstrap4 %}
 {% load static%}
 
@@ -12,6 +13,10 @@
 
 
 {% block content %}
+
+
+
+{% if user.is_authenticated %}
 <header>
 <div class="container">
 
@@ -21,7 +26,7 @@
     </div>
 
     <div class="profile-user-settings">
-      <h1 class="profile-user-name">janedoe </h1>
+      <h1 class="profile-user-name">{{user.username}}</h1>
       <button class="btn profile-edit-btn">Edit Profile </button>
       <button class="btn profile-settings-btn" aria-label="Profile Settings"> <i class="fas fa-cog" aria-hidden></i></button>
     </div>
@@ -33,7 +38,7 @@
        </ul>
      </div>
      <div class="profile-bio">
-       <p><span class="profile-real-name">John Doe</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium ab qu</p>
+       <p><span class="profile-real-name">{{user.username}}</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium ab qu</p>
      </div>
   </div>
      <!--End profile-->
@@ -41,17 +46,27 @@
 <!--End of Container-->
 </header>
 
+<div class="container">
   <main>
+
+    {% for image in posts %}
    <div class="gallery">
      <div class="gallery-item" tabindex="0">
-       <img src="/static/images/post-1.jpg" alt="" class="img-fluid">
+       <img src="{{image.image.url}}" alt="" class="img-fluid" style="max-width: 500px; max-height: 500px;">
       
      </div>
    </div> 
+
+   {% endfor %}
    <!--End Gallery-->
    
   </main>
  
+</div>
+  {% else %}
+ <p>Please Log in to access this page </p>
+
+  {% endif %}
 
 
 
