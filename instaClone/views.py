@@ -8,4 +8,4 @@ import datetime as dt
 def landing (request):
 
   title = 'Instagram'
-  return render (request,'registration/login.html',{'title':title,})
+  return render (request,'index.html',{'title':title,})

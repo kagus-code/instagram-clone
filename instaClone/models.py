@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)
     user_name = models.CharField(max_length=30)
     profile_pic = CloudinaryField('image',null=True)
     bio = models.TextField(max_length=500, default="Bio", blank=True)
@@ -42,8 +42,8 @@ class Image(models.Model):
   image_caption= models.TextField()
   pub_date = models.DateTimeField(auto_now_add=True)
   likes =models.ManyToManyField(User, related_name='likes',blank=True)
-  creator= models.ForeignKey(Profile,on_delete=models.CASCADE,blank=True)
-#   comment= models.ForeignKey(User, on_delete=models.CASCADE)
+  creator = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
 
 
   def save_image(self):
