@@ -2,18 +2,18 @@ from django.core.checks import messages
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http  import HttpResponse,Http404,HttpResponseRedirect
 from django.urls import reverse
-import datetime as dt
+from django.contrib.auth.decorators import login_required
 from .models import Image,Profile,Comment
 
 # Create your views here.
 
+@login_required(login_url='/accounts/login/')
 def landing (request):
   post = Image.objects.all()
   comments =Comment.objects.all()
 
-
   title = 'Instagram'
-  return render (request,'django_registration/registration_form.html',{'title':title,'Posts':post, 'comments':comments})
+  return render (request,'index.html',{'title':title,'Posts':post, 'comments':comments})
 
 
 def like (request, pk):

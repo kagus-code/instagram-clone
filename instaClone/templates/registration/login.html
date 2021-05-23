@@ -23,9 +23,17 @@
       <img src="{% static 'images/instagram-logo.png'   %}" class="logo" />
       <!-- Log in form -->
       <div class="log-in-form">
-        <input type="text" placeholder="Phone number, username or email" />
-        <input type="password" placeholder="Password" />
-        <button class="log-in-button">Log In</button>
+     <form  action="/accounts/login/" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form%}
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-lg btn-block" value="Login">log in</button>
+            </div>
+
+            <input type="hidden" name="next" value="{{next}}">
+
+          </form>
       </div>
       <!-- OR divider -->
       <span class="or-divider">OR</span>

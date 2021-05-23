@@ -1,6 +1,6 @@
 {%extends "django_registration/base.html"%} 
-{% load crispy_forms_tags %}
 {% load bootstrap4 %}
+{% load crispy_forms_tags %}
 {% load static%}
 
 
@@ -33,7 +33,7 @@
 
         <form  action="/accounts/register/" method="post">
           {% csrf_token %}
-          {{ form|crispy }}
+          {% bootstrap_form form %}
           <div class="form-group">
             <input type="submit" class="btn btn-primary btn-sm" value="Sign Up">
           </div>
