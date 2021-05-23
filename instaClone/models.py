@@ -46,11 +46,15 @@ class Image(models.Model):
 
 
 
+
+  def likes_count(self):
+      return self.likes.count()
+
   def save_image(self):
-    self.save()      
+    return self.save()      
 
   def delete_image(self, image_name):
-        self.objects.filter(image_name=image_name).delete()   
+        return self.objects.filter(image_name=image_name).delete()   
 
   @classmethod
   def update_caption(cls,id,new_caption):
