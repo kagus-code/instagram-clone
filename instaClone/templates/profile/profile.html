@@ -31,15 +31,16 @@
     </div>
 
     <div class="profile-user-settings">
-      <h1 class="profile-user-name">{{user.username}}</h1>
-     <a href="{%url 'edit_profile' userId=user.id%}"> <button class="btn profile-edit-btn">Edit Profile </button></a>
+      <h3 class="profile-user-name">{{user.username}}</h3>
+      &nbsp; &nbsp; 
+     <a href="{%url 'edit_profile' userId=user.id%}"> <button class="btn btn-outline-dark"> <h3>Edit Profile</h3> </button></a>
       <button class="btn profile-settings-btn" aria-label="Profile Settings"> <i class="fas fa-cog" aria-hidden></i></button>
     </div>
      <div class="profile-stats">
        <ul>
          <li><span class="profile-stat-count">{{user.creator.count}} </span>posts</li>
-         <li><span class="profile-stat-count">164 </span>followers</li>
-         <li><span class="profile-stat-count">164 </span>following</li>
+         <li><span class="profile-stat-count">2 </span>followers</li>
+         <li><span class="profile-stat-count">2</span>following</li>
        </ul>
      </div>
      <div class="profile-bio">
@@ -52,21 +53,24 @@
 </div>
 <!--End of Container-->
 </header>
-
-<div class="container">
-  <main>
-
+<hr>
+<div class="container-fluid">
+  <main>  
+<div class="row">
     {% for image in posts %}
+    <div class="col-md-4">
    <div class="gallery">
      <div class="gallery-item" tabindex="0">
-       <img src="{{image.image.url}}" alt="" class="img-fluid" style="max-width: 500px; max-height: 500px;">
-      
+       <a href="{% url 'comment_image' image_id=image.id %}"><img src="{{image.image.url}}" alt="" class="img-fluid">
+       </a>
+  
      </div>
    </div> 
+  </div>
 
    {% endfor %}
    <!--End Gallery-->
-   
+  </div>
   </main>
  
 </div>
