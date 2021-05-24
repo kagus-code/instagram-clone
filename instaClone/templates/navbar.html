@@ -21,8 +21,9 @@
               <img style="max-width: 303px; max-height: 63px;" src="{% static 'images/instagram-logo.png'%}" alt="" loading="lazy">
           </a>
           <div>
-              <form class="form-inline my-2 my-lg-0">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="form" role="search" action="{% url 'search_results' %}">
+                
+                  <input type="search" class="form-control mr-sm-2" placeholder="Search username" name="username" required>
               </form>
           </div>
           <div class="d-flex flex-row">

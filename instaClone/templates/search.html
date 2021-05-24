@@ -1,0 +1,49 @@
+{%extends "base.html"%}
+{% load cloudinary %}
+
+
+{% load bootstrap4 %}
+{% load static%}
+
+
+
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/search.css'   %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      {% if users%}
+      <h2>Found {{ users|length }} users with the name {{message}}</h2>
+    {% else %}
+      <h2> Found 0 users with the name {{message}}</h2>
+    {% endif %}
+
+<br>
+
+    {% for user in users %}
+
+    <ul>
+      <li><h3>{{user.username}}</h3></li>
+    </ul>
+
+    {% empty %}
+    <div class="row">
+      <h2 ></h2>
+    </div>
+    {% endfor %}
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+{% endblock %}

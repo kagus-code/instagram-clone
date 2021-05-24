@@ -16,6 +16,7 @@ urlpatterns = [
   path('profile/<username>/', views.user_profile, name='profile_page'),
   re_path(r'^new/image$', views.upload_image, name='upload_image'),
   re_path(r'^comments/(?P<image_id>\d+)/$', views.comment_image, name='comment_image'),
+  re_path(r'^search/', views.search_results, name='search_results'),
 
   
 
