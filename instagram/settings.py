@@ -170,4 +170,6 @@ cloudinary.config(
 
 LOGIN_REDIRECT_URL = 'landingPage'
 
+LOGOUT_REDIRECT_URL = '/accounts/login'
+
 
