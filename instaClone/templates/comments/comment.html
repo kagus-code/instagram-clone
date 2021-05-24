@@ -32,10 +32,24 @@
           {% endif %}
 
           {% if image.comments.count > 0  %}
-                                      <span class="text-muted"> {{image.comments.count}} comments</span>
-                                      {% else %}
-                                      <span class="text-muted">no comments available</span>
-                                      {% endif %}
+          <span class="text-muted"> {{image.comments.count}} comments</span>
+          {% else %}
+          <span class="text-muted">no comments available</span>
+          {% endif %}
+
+         
+         <ul>
+          {%for comment in comments %}
+           <li>
+            {{comment.comment}}
+            <p><small>by {{comment.user}}</small></p>
+           </li>
+           {% empty %}
+              <li></li>
+           {% endfor %}
+         </ul>
+
+
         </div>
       </div>
     </div>

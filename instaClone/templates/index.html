@@ -44,7 +44,7 @@
                           </div>
                           <div class="card-body p-0">
                               <div class="embed-responsive embed-responsive-1by1">
-                                <img class="embed-responsive-item" src="{{ post.image.url}}" />
+                              <a href="{% url 'comment_image' image_id=post.id %}">  <img class="embed-responsive-item" src="{{ post.image.url}}" />  </a>
                                  <!-- <div class="embed-responsive-item" > {% cloudinary post.image format="jpg" width=500 height=500 crop="fill" %} </div> -->
                               </div>
 
@@ -118,9 +118,16 @@
                                   <p class="d-block mb-1">{{post.image_caption}}</p>
                                   <button class="btn p-0">
                                     {% if post.comments.count > 0  %}
-                                      <span class="text-muted">View all {{post.comments}} comments</span>
+                                    <a href="{% url 'comment_image' image_id=post.id %}"> 
+                                        
+                                        {% if post.comments.count < 2  %}
+                                        <span class="text-muted">View  {{post.comments.count}} comment</span></a>
+                                        {% else %}
+                                        <span class="text-muted">View all  {{post.comments.count}} comments</span></a>
+                                        {% endif %}
+
                                       {% else %}
-                                      <span class="text-muted">no comments available add one</span>
+                                      <span class="text-muted">no comments available add one below</span>
                                       {% endif %}
                                   </button>
                                   
@@ -136,9 +143,11 @@
                               </div>
 
                               <div class="position-relative comment-box">
-                                  <form>
-                                      <input class="w-100 border-0 p-3 input-post" placeholder="Add a comment...">
-                                      <button class="btn btn-primary position-absolute btn-ig">Post</button>
+                                <form action="{%url 'comment_image' image_id=post.id  %}" method="POST" enctype="multipart/form-data">
+                                    {%csrf_token%}
+                                    {% bootstrap_form form layout='inline'%}
+                                    <input type="submit" class="btn btn-primary position-absolute btn-ig" value="Post">
+                                    
                                   </form>
                               </div>
 

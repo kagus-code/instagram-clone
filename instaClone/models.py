@@ -70,7 +70,7 @@ class Image(models.Model):
 
 
 class Comment(models.Model):
-    comment = models.TextField()
+    comment = models.CharField(max_length=500)
     image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
     pub_date = models.DateTimeField(auto_now_add=True)

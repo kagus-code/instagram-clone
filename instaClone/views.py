@@ -12,10 +12,11 @@ from .forms import UploadImageForm,PostCommentForm
 @login_required(login_url='/accounts/login/')
 def landing (request):
   post = Image.objects.all()
+  form = PostCommentForm   
   comments =Comment.objects.all()
 
   title = 'Instagram'
-  return render (request,'index.html',{'title':title,'Posts':post, 'comments':comments})
+  return render (request,'index.html',{'title':title,'Posts':post, 'comments':comments,"form": form})
 
 
 @login_required(login_url='/accounts/login/')
@@ -58,6 +59,7 @@ def upload_image(request):
 @login_required(login_url='/accounts/login/')
 def comment_image(request,image_id):
   image = Image.objects.get(pk=image_id)
+  comments = Comment.objects.filter(image=image)
   current_user =request.user
   if request.method == 'POST':
     form = PostCommentForm(request.POST)
@@ -66,10 +68,10 @@ def comment_image(request,image_id):
       comment.user = current_user
       comment.image = Image.objects.get(pk=image_id)
       comment.save()
-    return HttpResponseRedirect(reverse('landingPage', args=[image_id]))
+    return HttpResponseRedirect(reverse('comment_image', args=[image_id]))
   else:
     form = PostCommentForm   
-  return render(request, 'comments/comment.html', {"image": image,"form": form})
+  return render(request, 'comments/comment.html', {"image": image,"form": form,"comments": comments})
 
 
 
