@@ -57,8 +57,8 @@ class Image(models.Model):
         return self.objects.filter(image_name=image_name).delete()   
 
   @classmethod
-  def update_caption(cls,id,new_caption):
-        update = Image.objects.filter(id=id).update(user_caption=new_caption)
+  def update_caption(cls,image_name,new_caption):
+        update = Image.objects.filter(image_name=image_name).update(image_caption=new_caption)
         return update   
 
 
