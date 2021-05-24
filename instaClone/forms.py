@@ -1,5 +1,5 @@
 from django import forms
-from .models import Image
+from .models import Image,Comment
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -17,5 +17,13 @@ class UploadImageForm(forms.ModelForm):
   class Meta:
     model = Image
     exclude = ['likes','pub_date','creator']
+
+class PostCommentForm(forms.ModelForm):
+  class Meta:
+    model =  Comment
+
+    exclude = ['image','pub_date','user']
+
+
 
 

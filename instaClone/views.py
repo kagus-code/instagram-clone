@@ -5,7 +5,7 @@ from django.http  import HttpResponse,Http404,HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Image,Profile,Comment
-from .forms import UploadImageForm
+from .forms import UploadImageForm,PostCommentForm
 
 # Create your views here.
 
@@ -52,7 +52,25 @@ def upload_image(request):
     return redirect(landing)
   else:
     form = UploadImageForm
-  return render(request, 'upload.html', {"form": form})    
+  return render(request, 'upload.html', {"form": form})   
+
+
+@login_required(login_url='/accounts/login/')
+def comment_image(request,image_id):
+  image = Image.objects.get(pk=image_id)
+  current_user =request.user
+  if request.method == 'POST':
+    form = PostCommentForm(request.POST)
+    if form.is_valid():
+      comment = form.save(commit=False)
+      comment.user = current_user
+      comment.image = Image.objects.get(pk=image_id)
+      comment.save()
+    return HttpResponseRedirect(reverse('landingPage', args=[image_id]))
+  else:
+    form = PostCommentForm   
+  return render(request, 'comments/comment.html', {"image": image,"form": form})
+
 
 
 
