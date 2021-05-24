@@ -22,7 +22,12 @@
 
   <div class="profile">
     <div class="profile-image">
-      <img src="" alt="">
+
+      {% if user.profile.profile_pic.url %}
+      <img src="{{user.profile.profile_pic.url}}"  alt="image"style="max-width: 200px;max-height: 200px;">
+      {% else %}
+      <img src="{% static 'images/avatar.png'%}"  alt="image"style="max-width: 200px;max-height: 200px;">
+      {% endif%}
     </div>
 
     <div class="profile-user-settings">
@@ -32,13 +37,15 @@
     </div>
      <div class="profile-stats">
        <ul>
-         <li><span class="profile-stat-count">164 </span>posts</li>
+         <li><span class="profile-stat-count">{{user.creator.count}} </span>posts</li>
          <li><span class="profile-stat-count">164 </span>followers</li>
          <li><span class="profile-stat-count">164 </span>following</li>
        </ul>
      </div>
      <div class="profile-bio">
-       <p><span class="profile-real-name">{{user.username}}</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium ab qu</p>
+       <p><span class="profile-real-name">{{user.username}}</span> </p>
+       <p><small>bio</small></p>
+       <p>{{user.profile.bio}}</p>
      </div>
   </div>
      <!--End profile-->

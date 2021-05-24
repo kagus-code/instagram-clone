@@ -36,8 +36,11 @@
                               <div class="d-flex flex-row align-items-center">
                                   <div
                                       class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo mr-3">
-                                      <img src="{% static 'images/post-1.jpg'   %}"  alt="..."
-                                          style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                      {% if post.creator.profile.profile_pic.url %}
+                                      <img src="{{post.creator.profile.profile_pic.url}}"  alt="image"style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                      {% else %}
+                                      <img src="{% static 'images/avatar.png'%}"  alt="image"style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                      {% endif%}
                                   </div>
                                   <span class="font-weight-bold">{{post.creator}}</span>
                               </div>

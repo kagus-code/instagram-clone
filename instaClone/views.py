@@ -22,9 +22,10 @@ def landing (request):
 @login_required(login_url='/accounts/login/')
 def user_profile (request,userId):
   images = Image.objects.filter(creator=userId)
-  print(images)
+  profile = Profile.objects.filter(user=userId)
+  print(profile)
   profile=Profile.objects.all()
-  return render(request, 'profile/profile.html', {'posts':images})
+  return render(request, 'profile/profile.html', {'posts':images, 'profile':profile })
 
 
 
@@ -90,7 +91,10 @@ def edit_profile(request,userId):
     form= UpdateProfileForm(request.POST, request.FILES)
     if form.is_valid():
       profile = form.save(commit=False)
-      profile.user = current_user
+      if profile.user is not None:
+        profile.objects.filter(user=current_user).update(user=current_user)
+      else:
+        profile.user = current_user
       profile.email = current_user.email
       profile.save() 
       return HttpResponseRedirect(reverse('profile_page', args=[userId]))
