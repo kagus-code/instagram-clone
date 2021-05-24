@@ -27,7 +27,7 @@
 
     <div class="profile-user-settings">
       <h1 class="profile-user-name">{{user.username}}</h1>
-      <button class="btn profile-edit-btn">Edit Profile </button>
+     <a href="{%url 'edit_profile' userId=user.id%}"> <button class="btn profile-edit-btn">Edit Profile </button></a>
       <button class="btn profile-settings-btn" aria-label="Profile Settings"> <i class="fas fa-cog" aria-hidden></i></button>
     </div>
      <div class="profile-stats">

@@ -5,7 +5,7 @@ from django.http  import HttpResponse,Http404,HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Image,Profile,Comment
-from .forms import UploadImageForm,PostCommentForm
+from .forms import UploadImageForm,PostCommentForm,UpdateProfileForm
 
 # Create your views here.
 
@@ -20,17 +20,11 @@ def landing (request):
 
 
 @login_required(login_url='/accounts/login/')
-def user_profile (request,username):
-  user_profile = get_object_or_404(User, username=username)
-  posts = user_profile.image.all()
-
-  print(posts)
-
-
+def user_profile (request,userId):
+  images = Image.objects.filter(creator=userId)
+  print(images)
   profile=Profile.objects.all()
-
-
-  return render(request, 'profile/profile.html', {'posts':posts})
+  return render(request, 'profile/profile.html', {'posts':images})
 
 
 
@@ -88,5 +82,24 @@ def search_results(request):
     message = "You havent searched for any category"
 
     return render(request, 'search.html', {"message":message})
+
+
+def edit_profile(request,userId):
+  current_user =request.user
+  if request.method == 'POST':
+    form= UpdateProfileForm(request.POST, request.FILES)
+    if form.is_valid():
+      profile = form.save(commit=False)
+      profile.user = current_user
+      profile.email = current_user.email
+      profile.save() 
+      return HttpResponseRedirect(reverse('profile_page', args=[userId]))
+  else:
+    form = UpdateProfileForm
+  return render (request, 'profile/edit_profile.html' , {"form": form})     
+
+
+
+
 
 
