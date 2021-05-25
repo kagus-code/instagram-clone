@@ -86,13 +86,15 @@ def search_results(request):
 
 
 def edit_profile(request,userId):
+  old_profile = Profile.objects.filter(user=userId)
   current_user =request.user
   if request.method == 'POST':
     form= UpdateProfileForm(request.POST, request.FILES)
     if form.is_valid():
       profile = form.save(commit=False)
-      if profile.user is not None:
-        profile.objects.filter(user=current_user).update(user=current_user)
+      if old_profile.exists():
+        old_profile.delete()
+        profile.user = current_user
       else:
         profile.user = current_user
       profile.email = current_user.email
