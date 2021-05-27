@@ -1,7 +1,7 @@
 from django.core.checks import messages
 from django.contrib.auth.models import User
 from django.shortcuts import render,redirect,get_object_or_404
-from django.http  import HttpResponse,Http404,HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Image,Profile,Comment
@@ -33,7 +33,7 @@ def user_profile (request,userId):
 def like (request, pk):
   image = get_object_or_404(Image, id=request.POST.get('image_id'))
   image.likes.add(request.user)
-  return HttpResponseRedirect(reverse('landingPage'))
+  return HttpResponseRedirect(reverse("landingPage"))
 
 
 @login_required(login_url='/accounts/login/')
