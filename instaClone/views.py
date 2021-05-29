@@ -15,7 +15,7 @@ def landing (request):
   form = PostCommentForm   
   comments =Comment.objects.all()
 
-  title = 'Instagram'
+  title = 'Instagram-clone'
   return render (request,'index.html',{'title':title,'Posts':post, 'comments':comments,"form": form})
 
 
