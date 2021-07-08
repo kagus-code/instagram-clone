@@ -53,7 +53,7 @@ Create .env file and paste paste the following and fill  required fields:
 
 ## link to live site on GitHub Pages
 
-https://kagusinstagram.herokuapp.com/
+https://twiniz.herokuapp.com/
 
 
 ## Support and contact details
